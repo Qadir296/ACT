@@ -1,0 +1,590 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "ACT",
+    "description" : "ACT",
+    "version" : "1.0.0-oas3"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/khramoff/ACT/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "https://virtserver.swaggerhub.com/khramoff/Test/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "paths" : {
+    "/DetectionToLocalServiceMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DetectionToLocalServiceMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/LocalToDetectionServiceMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LocalToDetectionServiceMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PeripheralServiceMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PeripheralServiceMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/LocalToNCServiceMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LocalToNCServiceMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/MobileQueryMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MobileQueryMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/QueryResponse" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ForecastFrameQueryResponse" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NCForecastResponseToDisplayApp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ForecastFrameQueryMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ForecastFrameQueryMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/NCServiceMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NCServiceMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SmartAppToCSMessage" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SmartAppToCSMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DisplayApplicationQuery" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DisplayApplicationQuery"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/NCServiceQueryToNCService" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NCServiceQueryToNCService"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/NCServiceResponseToNCService" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/vnd.api+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NCServiceResponseToNCService"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "DetectionToLocalServiceMessage" : {
+        "required" : [ "Status", "Test-Result", "Test-Time" ],
+        "type" : "object",
+        "properties" : {
+          "Status" : {
+            "type" : "string",
+            "enum" : [ "Active", "Sleeping", "Out-of-Service", "Restarting", "Maintenance-requested", "Fault" ]
+          },
+          "Test-Time" : {
+            "type" : "string",
+            "description" : "ISO 8601 time format",
+            "format" : "date-time"
+          },
+          "Test-Result" : {
+            "maximum" : 10,
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 3
+          }
+        }
+      },
+      "LocalToDetectionServiceMessage" : {
+        "required" : [ "Command", "Test-interval" ],
+        "type" : "object",
+        "properties" : {
+          "Command" : {
+            "type" : "string",
+            "enum" : [ "restart", "shutdown", "sleep", "status-request", "test-start", "test-stop" ]
+          },
+          "test-interval" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "test interval in seconds",
+            "example" : 3
+          }
+        }
+      },
+      "PeripheralServiceMessage" : {
+        "type" : "object",
+        "properties" : {
+          "peripheral-service-id" : {
+            "type" : "string",
+            "description" : "The identifier depends on the communication technology used",
+            "example" : "C8:60:00:4C:27:A5"
+          }
+        }
+      },
+      "LocalToNCServiceMessage" : {
+        "required" : [ "disinfection", "disinfection-time", "location", "location-service-info", "peripheral-service-id", "test-result", "test-time" ],
+        "type" : "object",
+        "properties" : {
+          "peripheral-service-id" : {
+            "type" : "string",
+            "description" : "The identifier depends on the communication technology used",
+            "example" : "C8:60:00:4C:27:A5"
+          },
+          "location-service-info" : {
+            "type" : "string",
+            "description" : "URL pointing to customized information provided by the Local Service",
+            "example" : "https://NationalHealth.com/forecast"
+          },
+          "location" : {
+            "type" : "string",
+            "description" : "the geographical area, represented using the Geohash Geocode System",
+            "example" : "ezs42e44yx96"
+          },
+          "test-time" : {
+            "type" : "string",
+            "description" : "ISO 8601 time format",
+            "format" : "date-time"
+          },
+          "test-result" : {
+            "maximum" : 10,
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 3
+          }
+        }
+      },
+      "LocationQuery" : {
+        "type" : "string",
+        "description" : "the geographical area represented using the Geohash Geocode System",
+        "example" : "ezs42e44yx96"
+      },
+      "Query" : {
+        "type" : "string",
+        "description" : "the geographical area represented using the Geohash Geocode System",
+        "example" : "ezs42e44yx96"
+      },
+      "MobileQueryMessage" : {
+        "required" : [ "query" ],
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "$ref" : "#/components/schemas/Query"
+          }
+        }
+      },
+      "QueryResponse" : {
+        "required" : [ "message", "replies" ],
+        "type" : "object",
+        "properties" : {
+          "replies" : {
+            "$ref" : "#/components/schemas/QueryResponse_replies"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "it shall be displayed by the Smart Mobile Application to provide guidance to the users",
+            "example" : "area is infected, get PCR test or go to isolation"
+          }
+        }
+      },
+      "SmartAppToCSMessage" : {
+        "required" : [ "Personal-Test-Code", "Personal-Test-Time", "Visited-BSSIDS" ],
+        "type" : "object",
+        "properties" : {
+          "Personal-Test-Time" : {
+            "type" : "string",
+            "description" : "The time when the smartphone user has been tested positive to the virus",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "Personal-Test-Code" : {
+            "type" : "string",
+            "description" : "Reference ensuring that the test is recognized by the Public Health Authority",
+            "example" : "T23569K34"
+          },
+          "Visited-BSSIDS" : {
+            "type" : "array",
+            "description" : "the perpheral device user phone recorded",
+            "items" : {
+              "$ref" : "#/components/schemas/PeripheralServiceMessage"
+            }
+          }
+        }
+      },
+      "DisplayApplicationQuery" : {
+        "required" : [ "forescast-Time", "query" ],
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string",
+            "description" : "Geographical area of interest represented using the Geohash Geocode System",
+            "example" : "ezs42e44yx96"
+          },
+          "forecast-Frame" : {
+            "$ref" : "#/components/schemas/DisplayApplicationQuery_forecastFrame"
+          }
+        }
+      },
+      "NCForecastResponseToDisplayApp" : {
+        "required" : [ "message", "replies" ],
+        "type" : "object",
+        "properties" : {
+          "replies" : {
+            "$ref" : "#/components/schemas/NCForecastResponseToDisplayApp_replies"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Used by the Control Service to provide information and guidance to the users of the Display Application."
+          }
+        }
+      },
+      "ForecastFrameQueryMessage" : {
+        "required" : [ "forecast-frame", "query" ],
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "$ref" : "#/components/schemas/LocationQuery"
+          },
+          "forecast-frame" : {
+            "$ref" : "#/components/schemas/ForecastFrameQueryMessage_forecastframe"
+          }
+        }
+      },
+      "NCServiceMessage" : {
+        "required" : [ "forecast", "forecast-time", "notify-all" ],
+        "type" : "object",
+        "properties" : {
+          "notify-all" : {
+            "type" : "string",
+            "description" : "The identifier depends on the communication technology used",
+            "example" : "C8:60:00:4C:27:A5"
+          },
+          "forecast" : {
+            "type" : "string",
+            "description" : "contamination level",
+            "example" : "yellow",
+            "enum" : [ "yellow", "red" ]
+          },
+          "forecast-time" : {
+            "type" : "string",
+            "description" : "ISO 8601 time format",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Used by the National Control Service to provide informations and guidance to the users"
+          }
+        }
+      },
+      "NCServiceQueryToNCService" : {
+        "required" : [ "query" ],
+        "type" : "object",
+        "properties" : {
+          "query" : {
+            "type" : "string",
+            "description" : "Geographical area of the National service represented using the Geohash Geocode System",
+            "example" : "ezs42e44yx96"
+          }
+        }
+      },
+      "NCServiceResponseToNCService" : {
+        "required" : [ "message", "replies" ],
+        "type" : "object",
+        "properties" : {
+          "replies" : {
+            "$ref" : "#/components/schemas/NCServiceResponseToNCService_replies"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Used by the Control Service to provide information and guidance to the users of the Display Application."
+          }
+        }
+      },
+      "QueryResponse_replies_REDforecasts" : {
+        "required" : [ "end", "start" ],
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "end" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          }
+        }
+      },
+      "QueryResponse_replies" : {
+        "required" : [ "Control-Service-info", "Local-Service-info", "Peripheral-service-id", "RED-forecasts" ],
+        "type" : "object",
+        "properties" : {
+          "Peripheral-service-id" : {
+            "type" : "string",
+            "description" : "The identifier depends on the communication technology used",
+            "example" : "C8:60:00:4C:27:A5"
+          },
+          "RED-forecasts" : {
+            "$ref" : "#/components/schemas/QueryResponse_replies_REDforecasts"
+          },
+          "Local-Service-info" : {
+            "type" : "string",
+            "description" : "URL pointing to customized information provided by the Local Service",
+            "example" : "https://LocalHealth.com/forecast"
+          },
+          "Control-Service-info" : {
+            "type" : "string",
+            "description" : "URL pointing to customized information provided by the Control Service",
+            "example" : "https://NationalHealth.com/forecast"
+          }
+        }
+      },
+      "DisplayApplicationQuery_forecastFrame" : {
+        "required" : [ "end", "forecast", "start" ],
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "end" : {
+            "type" : "string",
+            "description" : "Time frame end",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "forecast" : {
+            "type" : "string",
+            "description" : "RED in case the query is asking only for notifying PERIPHERAL-ID with RED forecast; •\tALL in case the query is asking for notifying PERIPHERAL-ID with all the kind of forecast.",
+            "example" : "RED"
+          }
+        }
+      },
+      "NCForecastResponseToDisplayApp_replies_forecasts_frame" : {
+        "required" : [ "end", "start" ],
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "end" : {
+            "type" : "string",
+            "description" : "Time frame end",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          }
+        }
+      },
+      "NCForecastResponseToDisplayApp_replies_forecasts" : {
+        "required" : [ "forecast-color", "frame" ],
+        "type" : "object",
+        "properties" : {
+          "forecast-color" : {
+            "type" : "string",
+            "description" : "contamination level each color code is defined by the Public Health Authority.",
+            "enum" : [ "green", "grey", "yellow", "red" ]
+          },
+          "frame" : {
+            "$ref" : "#/components/schemas/NCForecastResponseToDisplayApp_replies_forecasts_frame"
+          }
+        }
+      },
+      "NCForecastResponseToDisplayApp_replies" : {
+        "required" : [ "detection-area", "forecasts" ],
+        "type" : "object",
+        "properties" : {
+          "detection-area" : {
+            "type" : "string",
+            "description" : "Geographical area of application of associated forecast, represented using the Geohash Geocode System",
+            "example" : "ezs42e44yx96"
+          },
+          "forecasts" : {
+            "$ref" : "#/components/schemas/NCForecastResponseToDisplayApp_replies_forecasts"
+          }
+        }
+      },
+      "ForecastFrameQueryMessage_forecastframe" : {
+        "required" : [ "frame-end", "frame-start" ],
+        "type" : "object",
+        "properties" : {
+          "frame-start" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          },
+          "frame-end" : {
+            "type" : "string",
+            "description" : "Time frame start",
+            "format" : "date-time",
+            "example" : "2020-12-16T17:06:37+02:00"
+          }
+        }
+      },
+      "NCServiceResponseToNCService_replies" : {
+        "required" : [ "detection-area", "forecasts", "peripheral-service-id" ],
+        "type" : "object",
+        "properties" : {
+          "peripheral-service-id" : {
+            "type" : "string",
+            "description" : "The identifier depends on the communication technology used",
+            "example" : "C8:60:00:4C:27:A5"
+          },
+          "detection-area" : {
+            "type" : "string",
+            "description" : "Geographical area of application of associated forecast, represented using the Geohash Geocode System",
+            "example" : "ezs42e44yx96"
+          },
+          "forecasts" : {
+            "$ref" : "#/components/schemas/NCForecastResponseToDisplayApp_replies_forecasts"
+          }
+        }
+      }
+    }
+  }
+}
