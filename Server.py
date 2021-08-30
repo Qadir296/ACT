@@ -36,10 +36,10 @@ def ControlService():
         return jsonify(result), 200
 @api.route('/ControlService/location', methods=['GET'])
 def location(): 
-    a = request.args.get('latitude')
-    b = request.args.get('longitude')
+    a = request.args.get("latitude")
+    b = request.args.get("longitude")
     location_code = pgh.encode(a,b)
     return jsonify(result), 200
 
 if __name__ == '__main__':
-    api.run(host= '10.188.35.12', port= 443 ,debug= True)
+    api.run(host= '138.96.16.37', port= 443 ,debug= True)
