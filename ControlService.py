@@ -22,7 +22,7 @@ def ControlserviceData(message):
         dict.update(msg)
         payload= {'m2m:cin': {'cnf': 'application/json:0', 'con': data}}
         new_payload= json.dumps(payload)
-        write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_ControlService", headers=headers, auth= HTTPBasicAuth('act_test', '@Test_99'), data=  new_payload)
+        write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_ControlService", headers=headers, auth= HTTPBasicAuth('username', 'password'), data=  new_payload)
         print(write.json())
         return write.status_code
 

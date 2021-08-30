@@ -42,4 +42,4 @@ def location():
     return jsonify(result), 200
 
 if __name__ == '__main__':
-    api.run(host= '138.96.16.37', port= 443 ,debug= True)
+    api.run(host= '', port= '' ,debug= True)

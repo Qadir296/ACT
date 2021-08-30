@@ -4,7 +4,7 @@ LocalServiceData= {}
 
 def DetectionNodeData(message):
     payload= json.dumps(message)
-    request= requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_DetectionNode", headers=headers, auth= HTTPBasicAuth('act_test', '@Test_99'),
+    request= requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_DetectionNode", headers=headers, auth= HTTPBasicAuth('username', 'password'),
       data=  payload)
     print(request.status_code)
     return request.json()
