@@ -20,7 +20,7 @@ def LocalToControlService(message):
     dict= {'location': geohash_code,'Disinfection': Disinfection, 'Disinfection_Time': Disinfection_Time, 'DetectionNodeData': x, 'Location-Service-Info': 'https://NationalHealth.com/forecast'}
     payload= {'m2m:cin': {'cnf': 'application/json:0', 'con': dict}}
     new_payload= json.dumps(payload)
-    write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_LocalService", headers=headers, auth= HTTPBasicAuth('act_test', '@Test_99'), data=  new_payload)
+    write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_LocalService", headers=headers, auth= HTTPBasicAuth('username', 'password'), data=  new_payload)
     print(write.json())
     return write.status_code
 

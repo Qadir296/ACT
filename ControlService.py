@@ -5,7 +5,7 @@ from lib import *
 
 
 # create database 
-cluster = MongoClient("mongodb+srv://user:act_test@cluster0.1qjcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+cluster = MongoClient("weblinkToDB")
 
 db = cluster["ACT"]
 collection = db["location"]
@@ -30,7 +30,7 @@ def ControlserviceData(message):
         #result.append(forecast_time)
         payload= {'m2m:cin': {'cnf': 'application/json:0', 'con': data}}
         new_payload= json.dumps(payload)
-        write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_ControlService", headers=headers, auth= HTTPBasicAuth('act_test', '@Test_99'), data=  new_payload)
+        write = requests.post(url= "https://icon-lab.tim.it/onem2m/act_test/ACT_ControlService", headers=headers, auth= HTTPBasicAuth('username', 'password'), data=  new_payload)
         print(write.json())
         return write.status_code
 
