@@ -1,5 +1,6 @@
+from typing import Dict
 from lib import *
-from ControlService import ControlserviceData, get_location_info, result, ControlServiceInfo
+from ControlService import ControlserviceData, get_location_info, result, ControlServiceInfo, d
 from LocalService import LocalServiceData, LocalToControlService
 
 
@@ -33,13 +34,12 @@ def ControlService():
             ControlserviceData(new_data)
             return jsonify(ControlServiceInfo, 201 ), 201
     else:
-        return jsonify(result), 200
+        return jsonify(ControlServiceInfo), 200
 @api.route('/ControlService/location', methods=['GET'])
 def location(): 
-    a = request.args.get("latitude")
-    b = request.args.get("longitude")
-    location_code = pgh.encode(a,b)
-    return jsonify(result), 200
+    a = request.args.get("location", type = str)
+    get_location_info(a)
+    return jsonify(json_util.dumps(d)), 200
 
 if __name__ == '__main__':
-    api.run(host= '', port= '' ,debug= True)
+    api.run(host= '138.96.16.37', port= '443' ,debug= True)
