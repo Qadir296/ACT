@@ -1,3 +1,3 @@
 # ACT
 
-This is the code repository of ACT protocol. The final and last update will published on 15 September. 
+This is the code repository present the implementation of Asynchronous Contact Tracing Protocol. This is Version 1 of the implementation.
